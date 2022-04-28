@@ -1,0 +1,14 @@
+package br.com.nava.entities;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+public class PetEntity {
+	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
+	private int id;
+	private String nome;
+
+}

@@ -1,0 +1,20 @@
+package br.com.nava.processors;
+
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+
+import br.com.nava.processors.PetProcessor;
+
+public class PetProcessor implements Processor{
+	
+	@Override
+	public void process(Exchange exchange) throws Exception{
+		from("timer:pet?period=5000")
+		.setHeader("id", simple("${random(0,3)}"))
+		.to("rest:get:pets/{id}?host=http://localhost:8080")
+		.process( new PetProcessor() )
+		.log("${body}");
+		
+	}
+
+}
